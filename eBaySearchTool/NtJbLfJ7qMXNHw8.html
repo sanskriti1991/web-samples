@@ -1,0 +1,437 @@
+<html>
+    <style type="text/css">
+    @media(max-width: @screen-xs-max){}
+@media(min-width: @screen-sm-min){}  /* deprecated: @screen-tablet, or @screen-sm */
+@media(min-width: @screen-md-min){}  /* deprecated: @screen-desktop, or @screen-md */
+@media(min-width: @screen-lg-min){}  /* deprecated: @screen-lg-desktop, or @screen-lg */
+    </style>
+<body>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-lg-12"><h2><img src="ebay.jpg" alt="ebay_logo" height="40" width="90"/> Shopping</h2></div>
+    </div>
+            <form name="search_form" id="searchForm" class="form-horizontal"  method="get" >
+                
+                <div class="form-group">
+                    <label id="label1" for="keywordInput" class="col-sm-2 control-label">Key words: *</label>
+                <div class="group col-sm-8">
+                    <input id="keywordInput" type="text" class="form-control" name ="keyword" placeholder="Enter Keyword" />
+                </div>
+                </div>
+            <div class="form-group"> 
+             <label id="label2"  class="col-sm-2 control-label">Price Range:</label>
+                <div class="group col-sm-4">
+                    <input type="text" id="fromInput" name="from" class="form-control"  placeholder="from ($)"/>
+                </div> 
+                    <div class="group col-sm-4"><input type="text" id="toInput" name="to" class="form-control"  placeholder="to ($)"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">
+                    Condition:</label>
+                <div class="col-sm-8">
+                    <label class="checkbox-inline">
+                <input type="checkbox" name="condition[]" value="1000" >New
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="condition[]" value="3000" >Used
+                    </label>
+                <label class="checkbox-inline">
+                <input type="checkbox" name="condition[]" value="4000">Very Good
+                    </label>
+                   
+                <label class="checkbox-inline">
+                <input type="checkbox" name="condition[]" value="5000" >Good
+                    </label>
+                <label class="checkbox-inline">
+                <input type="checkbox" name="condition[]" value="6000">Acceptable
+                    </label>
+            </div>
+                </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Buying Formats:
+                </label>
+                <div class="col-sm-8">
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="buyingFormats[]" value="FixedPrice" >Buy It Now
+                    </label>
+                        <label class="checkbox-inline">
+                <input type="checkbox" name="buyingFormats[]" value="Auction" >Auction
+                    </label>
+                    <label class="checkbox-inline">
+                <input type="checkbox" name="buyingFormats[]" value="Classified">Classified Ads
+                    </label>
+                    </div>
+            </div>
+                
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Seller:</label>
+                <div class="col-sm-8">
+                <label class="checkbox-inline">
+                   <input type="checkbox" id="sellerInput"name="seller" value="returnAccepted" > Return Accepted
+                </label>
+            </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Shipping:</label>
+                    <div class="col-sm-8">
+                <label class="checkbox-inline">
+                <input type="checkbox" name="freeShipping" value="true" >Free Shipping
+                    </label>
+                <label class="checkbox-inline">
+                <input type="checkbox" name="expShipping" value="expShipping">Expedited Shipping Available
+                    </label>
+                        </div>
+                </div>
+                    <div class="form-group">
+                        <label id="label3" class="col-sm-2 control-label"></label>
+               <div class="group col-sm-8">
+               <input id="handlingTimeInput" class="form-control" type="text" name="handlingTime" placeholder="Max handling time(days):" />
+                </div>
+</div>
+                
+                
+            <div class="form-group">
+                <label class="col-sm-2 control-label">
+                    Sort By:</label>
+                <div class="col-sm-8">
+                    <select name="sortOrder" id="sortOrder" class="form-control">
+                <option name="BestMatch" value="BestMatch">Best Match</option>
+                <option name="CurrentPriceHighest" value="CurrentPriceHighest" >Price: highest first</option>
+                <option name="PricePlusShippingHighest" value="PricePlusShippingHighest" >Price + Shipping: highest first</option>
+                <option name="PricePlusShippingLowest" value="PricePlusShippingLowest" >Price + Shipping: lowest first</option>
+                </select>
+                </div>
+            </div>
+
+    
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Results per page:</label>
+                <div class="col-sm-8">
+                <select name="pagination" id="pagination" class="form-control">
+                <option name="five" value="5" >5</option>
+                <option name="ten" value="10">10</option>
+                <option name="fifteen" value="15" >15</option>
+                <option name="twenty" value="20">20</option>
+                </select>
+                </div>
+            </div>
+                <div class="col-sm-10" align="right">
+                <input type="button" id="clearBtn"class="btn btn-default" value="Clear" onclick="clearForm()" />
+                <input type="submit" id="searchBtn" value="Search" class="btn btn-primary" name="submit" />
+            </div>
+            </form>
+    
+<br>        
+<div id="results" class="col-sm-12" >
+   
+    </div>
+    <br>        
+<div id="page" name="page" class="col-sm-12" >
+   
+    </div>
+
+</div>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="bootstrap/js/jquery.validate.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        //facebook
+  window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '344672992395681',
+          xfbml      : true,
+          version    : 'v2.3'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+        //
+        
+        
+        $(function () {
+    $('#myTab a:last').tab('show')
+  });
+        function clearForm()
+        {
+            document.getElementsByName("keyword").item(0).value="";
+            document.getElementsByName("from").item(0).value="";
+            document.getElementsByName("to").item(0).value="";
+            var condition = document.getElementsByName("condition[]");
+            for(i=0;i<condition.length;i++)
+            {
+            condition[i].checked=false;
+            }
+            var buyingFormats = document.getElementsByName("buyingFormats[]");
+            for(i=0;i<buyingFormats.length;i++)
+            {
+            buyingFormats[i].checked=false;
+            }
+            document.getElementsByName("seller").item(0).checked=false;
+            document.getElementsByName("freeShipping").item(0).checked=false;
+            document.getElementsByName("expShipping").item(0).checked=false;
+            document.getElementsByName("handlingTime").item(0).value="";
+            document.getElementsByName("sortOrder").item(0).value="BestMatch";
+            document.getElementsByName("pagination").item(0).value="5";
+        }
+        
+    $("#searchForm").validate({
+        rules:{
+         keyword:"required",
+         from:{
+            number:true,
+            valueCheck:true   
+         },
+         to:{
+            number:true,
+            minPriceCheck:true
+         },
+        handlingTime:{
+            digit:true,
+            handlingTimeValueCheck:true    
+        }
+        },
+        messages:{
+            keyword:"Please enter a key word",
+            from:{
+            number:"Price should be a valid	number",
+            valueCheck:"Minimum	price cannot be below 0"
+            },
+            to:{
+            number:"Price should be	a valid	number",
+            minPriceCheck:"Maximum price cannot	be less	than minimum price or below	0"
+            },
+             handlingTime:{
+            digit:"Max handling time should be a valid	digit",
+            handlingTimeValueCheck:"Max	handling time should be greater than or equal to 1"  
+        }
+        },
+         highlight: function(element) {
+            $(element).closest('.group').addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.group').removeClass('has-error');
+        },
+        errorElement: 'span',
+        errorClass: 'text-danger',
+        errorPlacement: function(error, element) {
+            if(element.parent('.form-group').length) {
+                error.insertAfter(element.parent()).css("font-weight","Bold");
+                $('#label1').css('color', 'black');
+                $('#label2').css('color', 'black');
+            } else {
+                error.insertAfter(element).css("font-weight","Bold");
+                $('#label1').css('color', 'black');
+                $('#label2').css('color', 'black');
+            }
+        },
+ submitHandler: function (form) {
+        ebayAPIcall(1);
+ return false;   
+ }
+    });
+        jQuery.validator.addMethod("valueCheck",function(value,element){
+        return this.optional(element) || value>=0?true:false;
+        });
+        jQuery.validator.addMethod("digit",function(value,element){
+        return this.optional(element) || (value - parseInt(value)) == 0?true:false;
+        });
+        
+        jQuery.validator.addMethod("minPriceCheck",function(value,element){
+        return this.optional(element) || ((parseInt(value)<parseInt($("#fromInput").val()) || parseInt(value)<0) && value!=""?false:true);
+        });
+        jQuery.validator.addMethod("handlingTimeValueCheck",function(value,element){
+        return this.optional(element) || value>0?true:false;
+        });
+        
+    function ebayAPIcall(pageNumber)
+        {
+            var conditions = new Array();
+        $('[name="condition[]"]:checked').each(function() {
+           conditions.push($(this).val());
+        });
+             var buyingFormat = new Array();
+        $('[name="buyingFormats[]"]:checked').each(function() {
+           buyingFormat.push($(this).val());
+        });
+            $.ajax({	
+url:	'http://cs-server.usc.edu:59687/search.php',
+            //Data:$('#searchForm').serialize(),
+            data:{
+            keyword:$('[name="keyword"]').val(),
+                sortOrder:$("#sortOrder").val(),
+                pagination:$("#pagination").val(),
+                from:$('[name="from"]').val(),
+                to:$('[name="to"]').val(),
+                condition:conditions,
+                buyingFormats:buyingFormat,
+                seller:$('[name="seller"]:checked').val(),
+                freeShipping:$('[name="freeShipping"]:checked').val(),
+                expShipping:$('[name="expShipping"]:checked').val(),
+                handlingTime:$('[name="handlingTime"]').val(),
+                pageNumberVal:pageNumber.toString()
+            },
+type:	'GET',
+            dataType: "json",
+success:	function(data)	{
+//	parse	the	data	here
+    output = jQuery.parseJSON(data);
+    if(output!=""){
+        $("#results").empty();
+$("#page").empty();
+        $("#results").append("<hr>");
+        if(output.ack=="Success"){
+        if(pageNumber==1 && (output.resultCount>parseInt(output.itemCount)) ){
+        $("#results").append("<h3>"+pageNumber+"-"+(pageNumber+(parseInt(output.itemCount)-1))+" items out of "+output.resultCount+"</h3><br>");}
+        else if(pageNumber==1 && (output.resultCount<=parseInt(output.itemCount)) ){
+        $("#results").append("<h3>"+pageNumber+"-"+(pageNumber+(parseInt(output.resultCount)-1))+" items out of "+output.resultCount+"</h3><br>");}
+        else{
+            var ic= (pageNumber*parseInt(output.itemCount));
+            var ici =((ic-parseInt(output.itemCount))+1);
+            var icf = ic;
+            if(ic>output.resultCount)
+            {icf=output.resultCount;}
+            $("#results").append("<h3>"+ici+"-"+icf+" items out of "+output.resultCount+"</h3><br>");}
+            var medialist ="";
+            medialist+='<ul class="media-list">';
+    for(i=0;i<parseInt(output.itemCount);i++){
+        var item="item"+i;
+        if(!output[item]){
+            break;
+        }
+        var galleryURL = output[item].basicInfo.galleryURL;
+        var pictureURLSuperSize = output[item].basicInfo.pictureURLSuperSize;
+        var title = output[item].basicInfo.title!=""?output[item].basicInfo.title:"N/A";
+        var viewItemURL = output[item].basicInfo.viewItemURL;
+        var price= output[item].basicInfo.convertedCurrentPrice!=""?output[item].basicInfo.convertedCurrentPrice:"N/A";
+        var shippingCost = parseInt(output[item].basicInfo.shippingServiceCost) == 0.0 ? "FREE Shipping" : output[item].basicInfo.shippingServiceCost!=""?output[item].basicInfo.shippingServiceCost:"N/A";
+        var location = output[item].basicInfo.location!=""?output[item].basicInfo.location:"N/A";
+        var topRated = output[item].basicInfo.topRatedListing=="true"?"&nbsp;&nbsp;<img src='itemTopRated.jpg' alt='TopRated' height='20' width='20'>&nbsp;&nbsp;":"&nbsp;&nbsp;";
+        //basic Info
+        var categoryName = output[item].basicInfo.categoryName!=""?output[item].basicInfo.categoryName:"N/A";
+        var condition = output[item].basicInfo.conditionDisplayName!=""?output[item].basicInfo.conditionDisplayName:"N/A";
+        var buyingFormat=""; if(output[item].basicInfo.listingType=="FixedPrice" || output[item].basicInfo.listingType=="StoreInventory"){ buyingFormat="Buy It Now"}
+else if(output[item].basicInfo.listingType=="Auction") { buyingFormat="Auction" }
+else if(output[item].basicInfo.listingType=="Classified"){buyingFormat="Classified Ad"}
+        else{buyingFormat="N/A"}
+        //seller Info
+        var userName = output[item].sellerInfo.sellerUserName!=""?output[item].sellerInfo.sellerUserName:"N/A";
+        var feedbackScore = output[item].sellerInfo.feedbackScore!=""?output[item].sellerInfo.feedbackScore:"N/A";
+        var positiveFeedback =  output[item].sellerInfo.positiveFeedBackPercent!=""?output[item].sellerInfo.positiveFeedBackPercent+"%":"N/A";
+        var feedbackRating = output[item].sellerInfo.feedbackRatingStar!=""?output[item].sellerInfo.feedbackRatingStar:"N/A";
+        var sellerTopRated = output[item].sellerInfo.topRatedSeller=="true"?'<span class="glyphicon glyphicon-ok" aria-hidden="true" style="color:rgb(0,255,0);"></span>':output[item].sellerInfo.topRatedSeller=="false"?'<span class="glyphicon glyphicon-remove" style="color:rgb(255,0,0);" aria-hidden="true"></span>':'<span>N/A</span>';
+        var store =  output[item].sellerInfo.sellerStoreName!=""?"<a href='"+output[item].sellerInfo.sellerStoreURL+"'>"+output[item].sellerInfo.sellerStoreName+"</a>":"N/A";
+        
+        //ShippingInfo
+        var shippingType = output[item].shippingInfo.shippingType!=""?output[item].shippingInfo.shippingType:"N/A";
+        var handlingTime =  output[item].shippingInfo.handlingTime!=""?output[item].shippingInfo.handlingTime:"N/A";
+        var shippingLocations= output[item].shippingInfo.shipToLocations!=""?output[item].shippingInfo.shipToLocations:"N/A";
+        var expeditedShipping = output[item].shippingInfo.expeditedShipping=="true"?'<span class="glyphicon glyphicon-ok icon-success" aria-hidden="true" style="color:rgb(0,255,0);"></span>':output[item].shippingInfo.expeditedShipping=="false"?'<span class="glyphicon glyphicon-remove" aria-hidden="true" style="color:rgb(255,0,0);"></span>':'<span>N/A</span>';
+        var onedayShipping =  output[item].shippingInfo.oneDayShippingAvailable=="true"?'<span class="glyphicon glyphicon-ok" aria-hidden="true" style="color:rgb(0,255,0);"></span>':output[item].shippingInfo.oneDayShippingAvailable=="false"?'<span class="glyphicon glyphicon-remove" aria-hidden="true" style="color:rgb(255,0,0);"></span>':'<span>N/A</span>';
+        var returnsAccepted =  output[item].shippingInfo.returnsAccepted=="true"?'<span class="glyphicon glyphicon-ok icon-success" aria-hidden="true" style="color:rgb(0,255,0);"></span>':output[item].shippingInfo.returnsAccepted=="false"?'<span class="glyphicon glyphicon-remove" aria-hidden="true" style="color:rgb(255,0,0);"></span>':'<span>N/A</span>';
+ 
+medialist+='<li class="media"><div class="media-left"><a href="#" data-toggle="modal" data-target="#imgModal'+i+'"><img class="media-object" src="'+galleryURL+'" alt="'+title+'"  height="64px" width="64px"></a></div><div class="media-body"><a href="'+viewItemURL+'"><h4 class="media heading">'+title+'</h4></a><p><strong>Price:$'+price+'</strong> ('+shippingCost+')&nbsp;&nbsp;<em> Location:'+location+'</em>'+topRated+'<a data-toggle="collapse" href="#collapseDetails'+i+'" aria-expanded="false" aria-controls="collapseDetails">View Details</a>&nbsp;&nbsp;<a href="#" onclick="Login(\''+title.replace("'","\\\'").replace("\"","&quot").replace("\=","&#61")+'\',\''+viewItemURL.replace("'","\\\'").replace("\"","&quot").replace("\=","&#61")+'\',\''+galleryURL.replace("'","\\\'").replace("\"","&quot").replace("\=","&#61")+'\',\''+price+'\',\''+shippingCost+'\',\''+location+'\''+')"><img src="fb.png" alt="Fb" height="20" width ="20"></a></p><br><div class="collapse" id="collapseDetails'+i+'"><ul class="nav nav-tabs" role="tablist" id="Tab'+i+'"><li role="presentation" class="active"><a href="#basicInfo'+i+'" aria-controls="basicInfo" role="tab" data-toggle="tab">Basic Info</a></li><li role="presentation"><a href="#sellerInfo'+i+'" aria-controls="sellerInfo" role="tab" data-toggle="tab">Seller Info</a></li><li role="presentation"><a href="#shippingInfo'+i+'" aria-controls="shippingInfo" role="tab" data-toggle="tab">Shipping Info</a></li></ul><div class="tab-content"><div role="tabpanel" class="tab-pane active" id="basicInfo'+i+'"><div class="row"><div class="col-md-4"><strong>Category name</strong></div><div class="col-md-4">'+categoryName+'</div></div><div class="row"><div class="col-md-4"><strong>Condition</strong></div><div class="col-md-4">'+condition+'</div></div><div class="row"><div class="col-md-4"><strong>Buying Format</strong></div><div class="col-md-4">'+ buyingFormat +'</div></div></div><div role="tabpanel" class="tab-pane" id="sellerInfo'+i+'"><div class="row"><div class="col-md-4"><strong>User name</strong></div><div class="col-md-4">'+userName+'</div></div><div class="row"><div class="col-md-4"><strong>Feedback score</strong></div><div class="col-md-4">'+feedbackScore+'</div></div><div class="row"><div class="col-md-4"><strong>Positive feedback</strong></div><div class="col-md-4">'+ positiveFeedback +'</div></div><div class="row"><div class="col-md-4"><strong>Feedback rating</strong></div><div class="col-md-4">'+ feedbackRating +'</div></div><div class="row"><div class="col-md-4"><strong>Top Rated</strong></div><div class="col-md-4">'+ sellerTopRated +'</div></div><div class="row"><div class="col-md-4"><strong>Store</strong></div><div class="col-md-4">'+ store +'</div></div></div><div role="tabpanel" class="tab-pane" id="shippingInfo'+i+'"><div class="row"><div class="col-md-4"><strong>Shipping type</strong></div><div class="col-md-4">'+shippingType+'</div></div><div class="row"><div class="col-md-4"><strong>Handling time</strong></div><div class="col-md-4">'+handlingTime+'</div></div><div class="row"><div class="col-md-4"><strong>Shipping locations</strong></div><div class="col-md-4">'+ shippingLocations +'</div></div><div class="row"><div class="col-md-4"><strong>Expedited shipping</strong></div><div class="col-md-4">'+ expeditedShipping +'</div></div><div class="row"><div class="col-md-4"><strong>One day shipping</strong></div><div class="col-md-4">'+ onedayShipping +'</div></div><div class="row"><div class="col-md-4"><strong>Returns accepted</strong></div><div class="col-md-4">'+ returnsAccepted +'</div></div></div>';   
+medialist+='</div>';
+medialist+='</div>';
+medialist+='</div><div class="modal fade bs-example-modal-sm" id="imgModal'+i+'" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="myModalLabel">'+title+'</h4></div><div class="modal-body" align="center" ><img  width="100%" src="'+pictureURLSuperSize+'" alt="'+title+'" ></div></div></div></li>';
+    }
+            medialist+='</ul>';
+$("#results").append(medialist);
+        //pagination
+var totalPages = output.resultCount / output.itemCount;
+if((totalPages+1)-totalPages != 0.0)
+{totalPages=Math.ceil(totalPages);}
+addPaginationBar(totalPages,pageNumber);
+    }else{
+    $("#results").append("<h3>"+output.ack+"</h3>");
+    }
+        
+    }
+},
+error:	function(){
+    alert("Unable to call server");
+}
+});
+        }
+        
+        
+      function addPaginationBar(totalPages,pageNumber)
+        {
+            $("#page").empty();
+            var current = pageNumber;
+            var initial  = (pageNumber-(pageNumber%5))+1;
+            if(pageNumber%5==0){
+            initial = (pageNumber-5)+1;
+            }
+            var final = initial+5;
+            var html=""
+            html+='<nav><ul class="pagination">';
+            if(current==1){
+            html+='<li class="disabled"><span aria-hidden="true">&laquo;</span></li>';
+            }
+            else{
+            html+='<li><a href="#" aria-label="Previous" onclick="ebayAPIcall('+(current-1)+')"><span aria-hidden="true">&laquo;</span></a></li>';
+            }
+        for(i=initial;i<final;i++)
+        {
+            if(i<=totalPages){
+                if(i==current){
+        html+='<li class="active"><a href="#" onclick="ebayAPIcall('+i+')">'+i+'</a></li>';
+                }
+                else{
+                    html+='<li><a href="#" onclick="ebayAPIcall('+i+')">'+i+'</a></li>';
+                }
+            }
+            else
+                break;
+        }
+            if(current<totalPages){
+        html+='<li><a href="#" aria-label="Next" onclick="ebayAPIcall('+(current+1)+')"><span aria-hidden="true">&raquo;</span></a></li></ul></nav>';
+            }
+            else
+            {
+                html+='<li class="disabled"><span aria-hidden="true">&raquo;</span></li></ul></nav>';
+            }
+            $("#page").append(html);
+        }
+       
+function Login(title,viewItemURL,galleryURL,price,shippingCost,location){
+ // FB.login(function (response) {
+   // if (response.authResponse) {
+        FB.ui({
+  method: 'feed',
+  name: title,
+  link: viewItemURL,
+caption:"Search Information from eBay.com",
+  picture: galleryURL,
+  description: "Price:$"+price+"("+shippingCost+"),Location: "+location
+}, function(response){
+        if (response && !response.error_code) {
+      alert('Posted Successfully');
+    } else {
+      alert('Not Posted');
+    }
+        
+        });
+//} else {
+  //    alert("Login attempt failed!");
+    //}
+  //});
+}
+        
+        //icon,returns accepted?, pagination, facebook, modal
+    </script>
+<noscript>
+</body>
+</html>

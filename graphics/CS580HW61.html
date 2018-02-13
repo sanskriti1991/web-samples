@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    </head>
+<body>
+"Keep on Clicking the canvas to have page flip animation effect!"<br />
+<canvas id="canvas" width="256 " height="256" onclick="nextFrameOnClick()"></canvas>
+    <script src="pot1.js">
+        </script>
+    <script src="texture1.js">
+        </script>
+      <script src="CS580HW61.js">
+</script>
+    <!--Getting json data!-->
+  <br />
+    <input type="number" id="I" min="0" max="2" value="0"/>
+    <input type="button" value="Shade" onclick="InterpolateStyle_Click(document.getElementById('I').value)" />
+    0 for flat , 1 for Gouraud and 2 for Phong
+    <br />
+    <br />
+    1 for Gouraud and 2 for Phong Shading<br />
+    <input type="number" id="S" min="1" max="2" value="1"/>
+    <br />
+    1 for Texture Map and 2 for Procedural Texture<br />
+    <input type="number" id="T" min="1" max="2" value="1"/>
+    <input type="button" value="Shade" onclick="TextureStyle_Click(document.getElementById('S').value, document.getElementById('T').value)" />
+    <br />
+    <br />
+    <input type="button" value="Generate ppm" onclick="FlushDisplayToPPMFile()" />
+    <br />
+    <br />
+    <input type="number" id="Tx" min="-20" max="20" value="0"/>
+    <input type="number" id="Ty" min="-20" max="20" value="0"/>
+    <input type="number" id="Tz" min="-20" max="20" value="0"/>
+    <input type="button" value="Translate" onclick="Translate_Click(document.getElementById('Tx').value, document.getElementById('Ty').value, document.getElementById('Tz').value)" />
+    <br />
+
+    <input type="number" id="Sx" min="-20" max="20" value="1"/>
+    <input type="number" id="Sy" min="-20" max="20" value="1"/>
+    <input type="number" id="Sz" min="-20" max="20" value="1"/>
+    <input type="button" value="Scale" onclick="Scale_Click(document.getElementById('Sx').value, document.getElementById('Sy').value, document.getElementById('Sz').value)" />
+    <br />
+
+    <input type="number" id="Rx" min="-40" max="40"value="0"/>
+    <input type="number" id="Ry" min="-40" max="40"value="0"/>
+    <input type="number" id="Rz" min="-40" max="40" value="0"/>
+    <input type="button" value="Rotate" onclick="Rotation_Click(document.getElementById('Rx').value, document.getElementById('Ry').value, document.getElementById('Rz').value)" />
+    
+</body>
+</html>

@@ -1,0 +1,528 @@
+/* ==========================================================================
+   HTML5 Boilerplate styles - h5bp.com (generated via initializr.com)
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+@font-face {
+    font-family: 'LeagueGothicRegular';
+       font-weight: normal;
+    font-style: normal;
+    src: url('font/LeagueGothic-Regular.otf') format('opentype');
+}
+@font-face {
+    font-family: 'ADay';
+       font-weight: normal;
+    font-style: normal;
+    src: url('font/ADAYWITHOUTSUN.ttf') format('opentype');
+}
+@font-face {
+    font-family: 'Existence-Light';
+       font-weight: normal;
+    font-style: normal;
+    src: url('font/Existence-Light.otf') format('opentype');
+}
+@font-face {
+    font-family: 'CaviarDreams';
+       font-weight: normal;
+    font-style: normal;
+    src: url('font/CaviarDreams.ttf') format('opentype');
+}
+@font-face {
+    font-family: 'FengardoNeue_Regular';
+       font-weight: normal;
+    font-style: normal;
+    src: url('font/FengardoNeue_Regular.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Asenine';
+       font-weight: normal;
+    font-style: normal;
+    src: url('font/ASENINE_.ttf') format('opentype');
+}
+.text-centered, .text-centered-medium-down {
+  text-align: center;
+  color: #fff;
+}
+.lp_h2 {
+  font-weight: 300;
+  font-family: "Asenine";
+  letter-spacing: .4px;
+  font-size: 3.5rem;
+  line-height: 4rem;
+  margin-bottom: 32px;
+}
+body {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+.appLinks_margin {
+  margin: 0 20px 20px 0;
+}
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+img {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.chromeframe {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+html, body {
+	width:100%;
+	height:100%;
+}
+body {
+	background: #0000ff/**#ba0101/*#70655a;0692ab*/; 
+	min-width: 1170px;
+}
+div#wrapper {
+	margin: -9px; 
+	min-width: 1170px;
+
+	overflow:hidden;
+	position:relative;
+}
+div.header {
+	height:100px;
+	padding:0 10px;
+}
+div.slide {
+	padding:50px 0;
+	height:700px;
+}
+div.slide .inner {
+	margin:0 auto;
+	width:1140px;
+}
+div.slide.log {
+	width:100%;
+	background:#fff;
+	position:relative;
+	z-index:11;
+}
+html.no-touch div.slide.log .scrollblock {
+	margin-left: 360px;
+	position:absolute;
+	top: 430px !important;
+}
+div.slide.log img.first {
+	float:right;
+  margin-right: 50px;
+  margin-top: -200px;
+}
+div.slide.log img.second {
+	float:right;
+	margin-right:-220px;
+}
+a.logo {
+	font-size:50px;
+	color:#fff;
+	padding-left:98px;
+	background:url("../img/logo.png") no-repeat left center;
+	line-height:108px;
+	display:inline-block;
+	height:100px;
+	text-decoration:none;
+	text-transform:uppercase;
+	font-family: 'LeagueGothicRegular';
+}
+a.buy {
+	width: 139px;
+	height: 44px;
+	display: inline-block;
+	background: url("../img/appstore.png") no-repeat;
+	float: right;
+	margin-top: 27px;
+}
+h1 {
+	font-size: 60px;
+    font-family: CaviarDreams;
+	color: #363636;
+	margin-top:75px;
+	margin-left: 7px;
+	z-index: 2;
+	margin-bottom:40px;
+	position: relative;
+	font-weight: normal;
+	text-transform: uppercase;
+	line-height:104px;
+}
+div.slide.main h1 {
+	color:#fff;
+	width: 700px;
+	margin-bottom: 65px;
+	line-height: 92px;
+	margin-top: 106px;
+}
+h1 label {
+	color:#d51a00;/*#fcce00*/
+}
+p {
+	color: #333;
+	font-family: sans-serif;
+	opacity: 0.45;
+	font-size:21px;
+	padding-left: 4px;
+	line-height: 40px;
+}
+div.slide.log p {
+	width:650px;
+}
+div.slide.share {
+	text-align:center;
+	z-index:10;
+	position:relative;
+	background:#e4e0dd;
+}
+
+html.no-touch div.slide.share .scrollblock {
+	top:340px!important;
+}
+html.no-touch div.slide.stats .scrollblock {
+	top:35px !important;
+}
+html.no-touch div.slide.stats .description {
+	padding-left:640px;
+}
+div.slide.stats {
+	z-index: 9;
+	position: relative;
+	background: #fff;
+	padding-top:35px;
+	padding-bottom:65px;
+}
+div.slide.easy {
+	z-index: 14;
+	position: relative;
+	background: #e4e0dd;
+	padding-top:35px;
+	padding-bottom:65px;
+}
+div.slide.easy h1 {
+	position:relative;
+}
+div.slide.easy img.iphone {
+	float:right;
+}
+div.slide.easy img.iphone.second {
+	margin-top: -490px;
+	margin-right: 350px;
+}
+div.slide.easy img.iphone.third {
+	margin-top: -490px;
+	margin-right: 700px;
+}
+div.slide.easy img.iphone.fourth {
+	margin-top: -490px;
+	margin-right: 1050px;
+}
+div.slide.easy .iphones {
+margin-left: -250px;
+}
+div.slide.easy .iphones {
+	width:1550px;
+	height:1006px;
+}
+
+html.no-touch div.slide.easy .scrollblock {
+	top:50px !important;
+}
+div.slide.stats .iphone {
+	float:left;
+      margin-right: 150px;
+}
+div.slide.stats .iphone.first {
+	position:relative;
+      margin-top: 10px;
+	z-index:1;
+}
+div.slide.stats p {
+	padding-right:50px;
+}
+div.slide.ui .inner {
+	width:auto;
+}
+div.slide.ui h1 {
+	margin-top: 20px;
+}
+div.slide.footer {
+	background:#212121;
+	height:auto;
+	text-align:center;
+	padding:100px 0;
+}
+div.slide.footer h4 {
+	margin:0;
+	margin-bottom:10px;
+	font-family: FengardoNeue_Regular;
+	text-transform:uppercase;
+	color:#fff;
+	font-size:21px;
+}
+div.slide.footer a {
+	color:#fff;
+font-family: 'Open Sans';
+font-size:18px;
+text-decoration:none;
+line-height:44px;
+	
+}
+div.slide.footer div.followus a:hover {
+	opacity:0.7;
+}
+div.slide.footer a:hover {
+	text-decoration:underline;
+}
+div.slide.footer div.mailus, div.slide.footer div.followus, div.slide.footer div.buy {
+	display:inline-block;
+	vertical-align:top;
+	padding:0 50px;
+}
+div.slide.footer div img {
+	padding:0 3px;
+}
+div.slide.ui p {
+	padding-bottom:70px;
+	width:700px;
+	margin:0 auto;
+	padding-top:0px;
+}
+div.slide.ui {
+	background:#fff;
+	z-index:15;
+	position:relative;
+	height:auto;
+	text-align:center;
+}
+div.slide.stats h1 {
+	margin-top: 0;
+	padding-top: 180px;
+}
+div.slide.stats .iphone.second {
+	margin-top:140px;
+	position:relative;
+	margin-left:-128px;
+	z-index:2;
+}
+div.slide.stats .iphone.third {
+	position:relative;
+	margin-left:-128px;
+	z-index:3;
+	padding-right:40px;
+}
+div.slide.share img.center {
+	margin-top:60px;
+    height: 400px;
+}
+div.slide.share div.social {
+	float:right;
+	width:100px;
+}
+div.slide.share div.social h3 {
+	font-size:50px;
+	text-align:left;
+	color:#363636;
+	height:100px;
+	line-height:100px;
+	margin:0;
+	padding-left:120px;
+	background:url("../img/social/facebook.png") no-repeat scroll left center;
+	font-family: 'LeagueGothicRegular';
+	text-transform:uppercase;
+}
+
+div.slide.share div.social h3.twitter {
+	background:url("../img/social/twitter.png") no-repeat scroll left center;
+margin-left: -500px;
+margin-top: 70px;
+}
+div.slide.share div.social h3.facebook {
+	margin-left: -330px;
+	margin-top: -5px;
+}
+div.slide.share div.social h3.mail {
+	background:url("../img/social/mail.png") no-repeat scroll left center;
+	margin-left: -160px;
+	margin-top: -5px;
+}
+div.slide.share p {
+	width:700px;
+	margin:0 auto;
+}
+div.slide.share h1 {
+	margin-top:25px;
+}
+div.slide.main p {
+	color:#fff;
+	font-style: italic;
+	font-size: 24px;
+	line-height: 38px;
+	width: 322px;
+}
+p label {
+	display:block;
+	font-style:normal;
+	font-size:14px;
+	margin-top: 11px;
+	margin-left: 3px;
+}
+
+div#iphone {
+	height: 500px;
+	background: url("../img/ph3.png") no-repeat;
+	margin-top: 70px;
+    text-align: center;
+  margin-left: 370px;
+	z-index:1;
+}
+div#iphone img.screenshot {
+    height: 580px;
+    position: absolute;
+    margin-left: 37px;
+    margin-top: 110px;
+display:block;
+}
+div#iphone img.screenshot.active {
+	display:inline;
+}
+div#iphone div.light {
+	height: 660px;
+	width: 884px;
+	background: url("../img/iphonelight.png") no-repeat;
+	z-index:4;
+	position:relative;
+}
+
+
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+
+}
+
+
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}

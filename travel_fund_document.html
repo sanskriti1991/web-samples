@@ -1,0 +1,343 @@
+<html>
+<head>
+<link rel='stylesheet' type="text/css" href="MockUpBootstrap/bootstrap/css/bootstrap.css">
+<link rel='stylesheet' type="text/css" href="main.css">
+</head>
+<body>
+<div class="container-fluid divFluidBg" >
+<div class="container">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand active" href="index.html">Home</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="resume.html">Resume<span class="sr-only">(current)</span></a></li>
+        <li class="dropdown active">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Samples<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="Boilerplate/Boilerplate/index1.html">HTML/CSS mockup1</a></li>
+            <li><a href="MockUpBootstrap/MWP.html">HTML/CSS mockup2 using bootstrap</a></li>
+			<li role="separator" class="divider"></li>
+            <li><a href="travel_fund_document.html">Custom JavaScript Functions</a></li>
+            <li><a href="graphics/CS580HW61.php">JavaScript renderer</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="https://www.youtube.com/watch?v=zOxCczdjeqA">Ebay Search Android Application</a></li>
+			<li><a href="NtJbLfJ7qMXNHw8.html">JQuery form validations</a></li>
+			<li><a href="http://cs-server.usc.edu:59687/NtJbLfJ7qMXNHw6.php">PHP  EbayAPI search</a></li> 
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class='box'>
+<h3>APPLICATION </h3>
+<form method='post'>
+<table style='width:700px'>
+<tr><td colspan='2'>Have you taken out a student loan for the current academic year?</td><td><select name='studentLoan'><option></option><option>Yes</option><option>No</option></select></td></tr>
+
+<tr><td colspan='2'>Meeting</td><td><input type='text' name='meeting'></td></tr>  
+<tr><td colspan='2'>Location</td><td><input type='text' name='location'></td></tr>
+<tr><td colspan='2'>Date</td><td><input type='date' name='date'></td></tr>      
+<tr><td colspan='2'>Title of the paper or poster</td><td><input type='text' name='title'></td></tr> 
+<tr><td colspan='3'><h4>ANTICIPATED EXPENSES</h4></td></tr>
+<tr><td colspan='2'>Registration</td><td><input type='text' name='registration' id='registration' onchange='sum(this)' onclick='prevVal(this)' value=0></td></tr> 
+
+<tr><td colspan='2'>Housing</td><td><input type='text' name='housing' id='housing' onchange='sum(this)' onclick='prevVal(this)' value=0></td></tr> 
+
+<tr><td colspan='2'>Travel</td><td><input type='text' name='travel' id='travel'onchange='sum(this)' onclick='prevVal(this)' value=0></td></tr> 
+
+<tr><td colspan='2'>Meals</td><td><input type='text' name='meals' id ='meals' onchange='sum(this)' onclick='prevVal(this)' value=0></td></tr> 
+
+<tr><td colspan='2'>TOTAL REQUESTED (USD)</td><td><input type='text' name='total' id='total' value=0 placeholder='0' disabled></td></tr>
+
+
+<tr><td colspan='3'><h4>PREVIOUS DEPARTMENTAL TRAVEL AWARD(S)</h4></td></tr></table>
+<table  style='width:700px'><tbody id='tblrows'>
+<tr id='row-0'><td>Semester<select name='semesterPrev[]'><option></option><option>SPRING</option><option>SUMMER</option><option>FALL</option></select></td>  
+<td>Meeting<input type='text' name='meetingPrev[]'></td>  
+<td>Amount<input type='text' name='amountPrev[]'></td>
+<td><input id='del-0' type='button' value='delete' onclick='removeRow(this)'>
+</tr>  
+</tbody>
+</table>
+<table style='width:700px'>
+<tr><br><input type='button' value='add new row' onclick='addRow()'><br></tr>
+</table>
+</form>
+</div>
+<div id='search' class='box' style="margin-left:20px">
+<h3>Search Records</h3>
+<form name='viewTable' action='' method='post'>
+<br><input type='text' name='tname' id='ta' placeholder='TA Name(s)' onkeyup='complete(this,ulTa,talist,divTa,t);listShow(ulTa);' autocomplete='off' ><br><div id='tlist'></div>
+<br><input type='text' name='iname' id='instructor' placeholder='Instructor Name(s)' onkeyup='complete(this,ulInst,faclist,divI,inst);listShow(ulInst);'  autocomplete='off'><br><div id='ilist'></div>
+<br><input type='text' name='class' placeholder='Class'>
+<br><select name='sem' id='sem'><option value='' selected style='display:none'>Semester</option><option value='SPRING'>SPRING</option><option value='SUMMER'>SUMMER</option><option value='FALL'>FALL</option></select>
+<br><input type='text' name='year'placeholder='Year'>
+</form>
+</div>
+<br>
+<br>
+<div style='    min-width: 700px;margin-top:20px' class="box">
+<h3>Upload CSV File</h3>
+<form name='uploadTable' action='' method='post'>
+<br><br><input type='file'  name='file' id='file' />
+<div id='data' style='display:block'></div>
+</div>
+</div>
+</div>
+<script>
+prevValue=0;
+function addRow()
+{
+	var tbody = document.getElementById("tblrows");
+	var rowCount = tbody.childNodes.length;
+	var option1 = document.createElement("option");
+	var opttxt1 = document.createTextNode("");
+	option1.appendChild(opttxt1);
+	var option2 = document.createElement("option");
+	var opttxt2 = document.createTextNode("SPRING");
+	option2.appendChild(opttxt2);
+	var option3 = document.createElement("option");
+	var opttxt3 = document.createTextNode("SUMMER");
+	option3.appendChild(opttxt3);
+	var option4 = document.createElement("option");
+	var opttxt4 = document.createTextNode("FALL");
+	option4.appendChild(opttxt4);
+	
+	
+		var tr = document.createElement("tr");
+		tr.setAttribute("id", "row-"+rowCount);
+		var td1 = document.createElement("td");
+		var txt1 = document.createTextNode("Semester");
+		var input1 = document.createElement("select");
+		input1.setAttribute("name", "semesterPrev[]");
+		input1.appendChild(option1);
+		input1.appendChild(option2);
+		input1.appendChild(option3);
+		input1.appendChild(option4);
+		td1.appendChild(txt1);
+		td1.appendChild(input1);
+		tr.appendChild(td1);
+		var td2 = document.createElement("td");
+		var txt2 = document.createTextNode("Meeting");
+		var input2 = document.createElement("input");
+		input2.setAttribute("name", "meetingPrev[]");
+		input2.setAttribute("type", "text");
+		td2.appendChild(txt2);
+		td2.appendChild(input2);
+		tr.appendChild(td2);
+		var td3 = document.createElement("td");
+		var txt3 = document.createTextNode("Amount");
+		var input3 = document.createElement("input");
+		input3.setAttribute("name", "amountPrev[]");
+		input3.setAttribute("type", "text");
+		td3.appendChild(txt3);
+		td3.appendChild(input3);
+		tr.appendChild(td3);
+		var td4 = document.createElement("td");
+		//var txt4 = document.createTextNode("Amount");
+		var input4 = document.createElement("input");
+		input4.setAttribute("id", "del-"+(rowCount));
+		input4.setAttribute("value", "delete");
+		input4.setAttribute("type", "button");
+		input4.setAttribute("onclick", "removeRow(this)");
+		//td4.appendChild(txt4);
+		td4.appendChild(input4);
+		tr.appendChild(td4);
+		
+		tbody.appendChild(tr);
+}
+function removeRow(ele)
+{
+	var tbody = document.getElementById("tblrows");
+	var rowCount =parseInt(ele.id.replace('del-',''));
+	row = document.getElementById('row-'+rowCount);
+	tbody.removeChild(row);
+}
+function prevVal(ele)
+{
+	prevValue=parseFloat(ele.value);
+}
+function sum(ele)
+{
+	if(ele.value == 0)
+	{
+		if(prevValue){
+			document.getElementById("total").value = parseFloat(document.getElementById("total").value) + parseFloat(-prevValue);
+		}
+		ele.value = 0;
+	}
+	document.getElementById("total").value = parseFloat(document.getElementById("total").value) + parseFloat(ele.value);
+}
+</script>
+<script>
+    var  faclist=['Fac1','Fac2','Fac3'];
+    var  talist=['Student1','2Student','3Student'];
+    //faclist = fillArray(document.getElementById("instructorList"));
+    //talist = fillArray(document.getElementById("taList"));
+   // var sectionlist=[1,2,3,4,5];
+    
+    var divI = document.getElementById("ilist");
+    var divTa = document.getElementById("tlist");
+    //var divSection = document.getElementById("sectionlist");
+    
+    var inst = "instructor";
+    var t = "ta";
+    var sect = "section";
+    //  var ta =document.getElementById("ta"); 
+    var ulInst = document.createElement("ul");
+    ulInst.setAttribute("id", "instList");
+    ulInst.setAttribute("style", "width:176px;display:none;");
+    ulInst.setAttribute("onmouseover","listShow(ulInst)");
+    ulInst.setAttribute("onmouseout","listHide(ulInst)");
+    
+    var ulTa = document.createElement("ul");
+    ulTa.setAttribute("id", "taList");
+    ulTa.setAttribute("style", "width:176px;display:none;");
+    ulTa.setAttribute("onmouseover","listShow(ulTa)");
+    ulTa.setAttribute("onmouseout","listHide(ulTa)");
+    
+    /*var ulSection = document.createElement("ul");
+    ulSection.setAttribute("id", "sectionList");
+    ulSection.setAttribute("style", "width:176px;display:none;");
+    ulSection.setAttribute("onmouseover","listShow(ulSection)");
+    ulSection.setAttribute("onmouseout","listHide(ulSection)");*/
+    selectedEl = $('#sem').find('option:selected');
+if(selectedEl.val()==""){
+    $('#sem').css('color','#999');
+    $('#sem').children().css('color','black');
+}
+    
+    //var addToListCount =0;
+    function listShow(ul){ ul.setAttribute("style", "width:176px;display:visible; list-style: outside none none;padding: 0px;display: block;outline: medium none;border: 1px solid #AAA;background: #FFF;color: #222;height: 100px;overflow-y: auto;overflow-x: hidden;");}
+    function listHide(ul){ ul.setAttribute("style", "width:176px;display:none;");}
+    
+    function addToList(e,textBox){
+        var textBoxVal =document.getElementById(textBox);
+        arr = textBoxVal.value.split(',');
+        arrIndex = arr.length -1;
+        if(arrIndex ==0)
+        {arr[arrIndex] = e.textContent+",";}
+        else
+        {arr[arrIndex] = e.textContent+",";}
+        textBoxVal.value = arr.join();
+    }
+
+function complete(e,ul,list,div,textBox)
+    {
+       console.log(e.value);
+        //<select id='ilist' style='width:176px' ></select>
+       eval = e.value.split(',');
+       console.log(eval);
+       var index = eval.length-1;
+       while (ul.firstChild) {
+           ul.removeChild(ul.firstChild);
+       }
+        str = eval[index].toUpperCase();
+        //str = str.replace(/[*]/g, ".*").toLowerCase().trim();
+        str = new RegExp("^"+ str);
+        found = 0;
+        //console.log(str);
+        for(i=0;i<list.length;i++)
+        {
+            //console.log(list[i].toUpperCase());
+            //console.log(str.test(list[i].toUpperCase()));
+            if(str.test(list[i].toUpperCase())){
+                //console.log();
+                if(ul.childNodes.length==0){
+                 var li = document.createElement("li");
+                    li.appendChild(document.createTextNode(list[i]));
+                    li.setAttribute("onmouseover",'setActive(this)');
+                    li.setAttribute("onmouseout",'removeActive(this)');
+                    li.setAttribute("onclick","addToList(this,'"+textBox+"')");
+                     ul.appendChild(li);
+                    
+                }else{
+                for(j=0;j<ul.childNodes.length;j++)
+                {
+                    if(ul.childNodes[j].textContent == list[i])
+                    {
+                      found++;
+                    }
+                    
+                }
+                    if(found==0)
+                    {
+                    var li = document.createElement("li");
+                    li.appendChild(document.createTextNode(list[i]));
+                    li.setAttribute("onmouseover",'setActive(this)');
+                    li.setAttribute("onmouseout",'removeActive(this)');
+                    li.setAttribute("onclick","addToList(this,'"+textBox+"')");
+                     ul.appendChild(li);
+                    }
+                }
+            }
+        }
+        div.appendChild(ul);
+    }
+
+</script>
+<script>
+function readSingleFile(evt) {
+    //Retrieve the first (and only!) File from the FileList object
+    var f = evt.target.files[0]; 
+    if (f) {
+      var r = new FileReader();
+      r.onload = function(e) { 
+	      var contents = e.target.result;
+          var rows = contents.split('\n');
+          var template = '<table style="display:block">'+
+                  '<tr><th>id</th><th>Class</th><th>Section</th><th>User</th><th>Type</th></tr>';
+              
+         
+          for(i=1;i<rows.length-1;i++)
+          {
+            values=rows[i].split(',');
+              
+              var courseName = "",section="",type="",users="";
+              
+			   if(values[0] != ""){
+                courseName = values[0];//.replace(/[^0-9]+/g, '')  ;
+              }
+              if(values[1] != ""){
+                users = values[1];//.replace(/[^0-9]+/g, '')  ;
+              }
+              if(values[2]!=""){
+              section = values[2];//.replace(/[^0-9\.]+/g, '');
+              }
+              
+              if(values[3]!=""){
+              type = values[3];
+              }
+              
+               template +='<tr><td>'+i+'</td><td><input type="text" name="courseName[]" value="'+courseName+'"></td>'+
+                   '<td><input type="text"  name="section[]" value="'+section+'"></td>'+
+                   '<td><input type="text"  name="users[]" value="'+users+'"></td>'+     
+                   '<td><input type="text"  name="type[]" value="'+type+'"></td></tr>';
+              }
+             
+            template +=  '</table>';
+          document.getElementById('data').innerHTML = template;
+      }
+      r.readAsText(f);
+    } else { 
+      alert("Failed to load file");
+    }
+  }
+     document.getElementById('file').addEventListener('change', readSingleFile, false);
+</script>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="MockUpBootstrap/bootstrap/js/bootstrap.min.js">
+</script>
+<noscript>
